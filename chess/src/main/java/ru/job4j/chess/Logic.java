@@ -26,14 +26,23 @@ public class Logic {
         int index = this.findBy(source);
         if (index != -1) {
             Cell[] steps = this.figures[index].way(source, dest);
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+            if (steps.length > 0 && steps[steps.length - 1].equals(dest) && this.isFree(steps)) {
                 rst = true;
                 this.figures[index] = this.figures[index].copy(dest);
             }
         }
         return rst;
     }
-
+    public boolean isFree(Cell[] steps){
+        boolean result=true;
+        for (Cell step:steps){
+            if(this.findBy(step)!=-1){
+                result=false;
+                break;
+            }
+        }
+        return result;
+    }
     public void clean() {
         for (int position = 0; position != this.figures.length; position++) {
             this.figures[position] = null;
