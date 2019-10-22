@@ -30,10 +30,10 @@ public class BishopBlack implements Figure {
                     String.format("Could not way by diagonal from %s to %s", source, dest)
             );
         }
-        int size = ((source.y-dest.y)>0)?(source.y-dest.y):(source.y-dest.y)*(-1);
+        int size = Math.abs(source.y-dest.y);
         Cell[] steps = new Cell[size];
-        int deltaX = ((source.x-dest.x)>0)?-1:1;
-        int deltaY = ((source.y-dest.y)>0)?-1:1;
+        int deltaX = Integer.compare(source.x,dest.x)*(-1);
+        int deltaY = Integer.compare(source.y,dest.y)*(-1);
         for (int index = 0; index < size; index++) {
             steps[index] = Cell.findBy(source.x+index*deltaX+deltaX,source.y+index*deltaY+deltaY);
         }
@@ -42,8 +42,8 @@ public class BishopBlack implements Figure {
 
     public boolean isDiagonal(Cell source, Cell dest) {
         //TODO check diagonal
-        int point_one=((source.x-dest.x)<0)?(source.x-dest.x)*(-1):(source.x-dest.x);
-        int point_two=((source.y-dest.y)<0)?(source.y-dest.y)*(-1):(source.y-dest.y);
+        int point_one=Math.abs(source.x-dest.x);
+        int point_two=Math.abs(source.y-dest.y);
         if (point_one-point_two==0) {
             return true;
         }
