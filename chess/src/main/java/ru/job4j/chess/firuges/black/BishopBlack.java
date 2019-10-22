@@ -32,8 +32,8 @@ public class BishopBlack implements Figure {
         }
         int size = Math.abs(source.y-dest.y);
         Cell[] steps = new Cell[size];
-        int deltaX = Integer.compare(source.x,dest.x)*(-1);
-        int deltaY = Integer.compare(source.y,dest.y)*(-1);
+        int deltaX = Integer.compare(dest.x,source.x);
+        int deltaY = Integer.compare(dest.y,source.y);
         for (int index = 0; index < size; index++) {
             steps[index] = Cell.findBy(source.x+index*deltaX+deltaX,source.y+index*deltaY+deltaY);
         }
